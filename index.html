@@ -1,78 +1,38 @@
-<!DOCTYPE html>
-<html lang="de">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>War nicht mit Absicht</title>
+<h1>🤨 Wieso bist du wieder hier?</h1>
+<p>Kann ich dir helfen?</p>
 
-<style>
-body{
-    background: linear-gradient(135deg,#111,#222);
-    color:white;
-    font-family:Arial,sans-serif;
-    height:100vh;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    margin:0;
-}
+<button onclick="showForm()">
+    Ja, bitte
+</button>
 
-.box{
-    background:#1e1e1e;
-    padding:40px;
-    border-radius:20px;
-    box-shadow:0 0 30px rgba(0,0,0,0.5);
-    text-align:center;
-    max-width:600px;
-}
+<div id="form" style="display:none; margin-top:20px;">
+    <h2>Bevor ich helfen kann:</h2>
 
-h1{
-    margin-bottom:20px;
-}
+    <p>Wie oft bist du bereits auf dieser Website gewesen?</p>
 
-p{
-    line-height:1.5;
-}
+    <input type="radio" id="einmal" name="besuch">
+    <label for="einmal">Einmal</label><br><br>
 
-.option{
-    margin:15px;
-    font-size:24px;
-}
+    <input type="radio" id="mehrmals" name="besuch">
+    <label for="mehrmals">Mehrmals</label><br><br>
 
-label{
-    margin-left:10px;
-}
-</style>
-</head>
-<body>
+    <input type="radio" id="ja" name="besuch">
+    <label for="ja">Ja</label><br><br>
 
-<div class="box">
-    <h1>Es tut mir leid. ❤️</h1>
-
-    <p>
-        Ich weiß, dass ich Mist gebaut habe.
-        Das war nicht meine Absicht und ich bereue es wirklich.
-        Mehr kann ich leider nicht tun, außer ehrlich zu sagen:
-        Es tut mir leid.
-    </p>
-
-    <h2>Verzeihst du mir?</h2>
-
-    <div class="option">
-        <input type="checkbox" checked>
-        <label>Ja</label>
-    </div>
-
-    <div class="option">
-        <input type="checkbox" disabled>
-        <label style="color:gray;">Nein</label>
-    </div>
-
-    <p style="font-size:12px;color:#999;">
-        Andere Antworten werden derzeit leider nicht unterstützt.
-    </p>
-
+    <button onclick="submitAnswer()">
+        Absenden
+    </button>
 </div>
 
-</body>
-</html>
+<p id="result"></p>
+
+<script>
+function showForm() {
+    document.getElementById("form").style.display = "block";
+}
+
+function submitAnswer() {
+    document.getElementById("result").innerHTML =
+      "✅ Vielen Dank für deine Ehrlichkeit.<br><br>Deine Antwort wurde erfolgreich ignoriert.";
+}
+</script>
