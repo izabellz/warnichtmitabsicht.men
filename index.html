@@ -1,38 +1,208 @@
-<h1>🤨 Wieso bist du wieder hier?</h1>
-<p>Kann ich dir helfen?</p>
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wieso bist du wieder hier?</title>
 
-<button onclick="showForm()">
-    Ja, bitte
-</button>
+<script src="https://cdn.npm/canvas-confetti@1.9.3/dist/confetti.browser.min.jsscript>
 
-<div id="form" style="display:none; margin-top:20px;">
-    <h2>Bevor ich helfen kann:</h2>
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
 
-    <p>Wie oft bist du bereits auf dieser Website gewesen?</p>
+body{
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-family:Arial,sans-serif;
+    background:linear-gradient(135deg,#0f172a,#1e293b);
+    color:white;
+    padding:20px;
+}
 
-    <input type="radio" id="einmal" name="besuch">
-    <label for="einmal">Einmal</label><br><br>
+.card{
+    width:100%;
+    max-width:650px;
+    padding:40px;
+    border-radius:24px;
+    background:rgba(255,255,255,0.08);
+    backdrop-filter:blur(15px);
+    box-shadow:0 20px 40px rgba(0,0,0,0.4);
+    text-align:center;
+}
 
-    <input type="radio" id="mehrmals" name="besuch">
-    <label for="mehrmals">Mehrmals</label><br><br>
+h1{
+    font-size:2.7rem;
+    margin-bottom:10px;
+}
 
-    <input type="radio" id="ja" name="besuch">
-    <label for="ja">Ja</label><br><br>
+.subtitle{
+    font-size:1.2rem;
+    color:#cbd5e1;
+    margin-bottom:30px;
+}
 
-    <button onclick="submitAnswer()">
-        Absenden
+button{
+    border:none;
+    padding:15px 30px;
+    border-radius:12px;
+    cursor:pointer;
+    transition:0.2s;
+    font-size:1rem;
+    font-weight:bold;
+}
+
+.primary-btn{
+    background:#22c55e;
+    color:white;
+}
+
+.primary-btn:hover{
+    background:#16a34a;
+    transform:translateY(-2px);
+}
+
+.submit-btn{
+    margin-top:20px;
+    background:#3b82f6;
+    color:white;
+}
+
+.submit-btn:hover{
+    background:#2563eb;
+}
+
+#frage{
+    display:none;
+    margin-top:30px;
+    animation:fadeIn 0.4s ease;
+}
+
+.option{
+    text-align:left;
+    background:rgba(255,255,255,0.05);
+    padding:15px;
+    border-radius:12px;
+    margin-top:10px;
+}
+
+.option:hover{
+    background:rgba(255,255,255,0.08);
+}
+
+#antwort{
+    margin-top:25px;
+    font-size:1.1rem;
+    color:#86efac;
+}
+
+small{
+    color:#94a3b8;
+}
+
+@keyframes fadeIn{
+    from{
+        opacity:0;
+        transform:translateY(10px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+</style>
+</head>
+<body>
+
+<div class="card">
+
+    <h1>🤨 Wieso bist du wieder hier?</h1>
+
+    <p class="subtitle">
+        Kann ich dir helfen?
+    </p>
+
+    <button class="primary-btn" onclick="showQuestion()">
+        Ja, bitte
     </button>
+
+    <div id="frage">
+
+        <h2>Bevor ich helfen kann...</h2>
+
+        <p style="margin-top:15px;margin-bottom:20px;">
+            Wie oft bist du bereits auf dieser Website gewesen?
+        </p>
+
+        <div class="option">
+            <input type="radio" name="besuch">
+            <label>Einmal</label>
+        </div>
+
+        <div class="option">
+            <input type="radio" name="besuch">
+            <label>Mehrmals</label>
+        </div>
+
+        <div class="option">
+            <input type="radio" name="besuch" checked>
+            <label>Ja</label>
+        </div>
+
+        <button class="submit-btn" onclick="submitAnswer()">
+            Absenden
+        </button>
+
+    </div>
+
+    <div id="antwort"></div>
+
 </div>
 
-<p id="result"></p>
-
 <script>
-function showForm() {
-    document.getElementById("form").style.display = "block";
+
+function showQuestion() {
+    document.getElementById("frage").style.display = "block";
 }
 
 function submitAnswer() {
-    document.getElementById("result").innerHTML =
-      "✅ Vielen Dank für deine Ehrlichkeit.<br><br>Deine Antwort wurde erfolgreich ignoriert.";
+
+    var duration = 2500;
+    var end = Date.now() + duration;
+
+    (function frame() {
+
+        confetti({
+            particleCount: 4,
+            angle: 60,
+            spread: 70,
+            origin: { x: 0 }
+        });
+
+        confetti({
+            particleCount: 4,
+            angle: 120,
+            spread: 70,
+            origin: { x: 1 }
+        });
+
+        if (Date.now() < end) {
+            requestAnimationFrame(frame);
+        }
+    })();
+
+    document.getElementById("antwort").innerHTML =
+        "✅ Vielen Dank für deine Ehrlichkeit.<br><br>" +
+        "Deine Antwort wurde erfolgreich ignoriert.<br><br>" +
+        "<small>Dieser Erfolg wird intern als Meilenstein gefeiert.</small>";
 }
+
 </script>
+
+</body>
+</html>
